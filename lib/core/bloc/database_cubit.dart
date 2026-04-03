@@ -1,37 +1,21 @@
+import 'package:firstapp/core/bloc/database_states/database_abstract.dart';
+import 'package:firstapp/core/bloc/database_states/database_error.dart';
+import 'package:firstapp/core/bloc/database_states/database_init.dart';
+import 'package:firstapp/core/bloc/database_states/database_loaded.dart';
+import 'package:firstapp/core/bloc/database_states/database_loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/mainDataModel/MainDataClass.dart';
 import '../Services/DataBaseService/CenterDataBase/Database_service.dart';
-import 'database_state.dart';
-
-Map<String, dynamic> _extractData(CompleteDatabase data) {
-  return {
-    'courses': data.courses,
-    'categories': data.categories,
-    'certificates': data.certificates,
-    'forums': data.forums,
-    'instructors': data.instructors,
-    'enrollments': data.enrollments,
-    'payments': data.payments,
-    'posts': data.posts,
-    'questions': data.questions,
-    'quizzes': data.quizzes,
-    'reviews': data.reviews,
-    'sections': data.sections,
-    'students': data.students,
-    'lessons': data.lessons,
-    'notifications': data.notifications,
-  };
-}
 
 class DatabaseCubit extends Cubit<DatabaseState> {
   final MainDatabase _databaseService;
-
-  DatabaseCubit(this._databaseService) : super(DatabaseInitial()) {
+  DatabaseCubit(this._databaseService)
+    : super(DatabaseInitial(message: 'Database is initializing')) {
     loadData();
   }
 
   Future<void> loadData() async {
-    emit(DatabaseLoading());
+    emit(DatabaseLoading('Loading data'));
     try {
       final data = _databaseService.getData;
       if (data != CompleteDatabase.emptydata) {
@@ -61,4 +45,24 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     }
     return CompleteDatabase.emptydata;
   }
+}
+
+Map<String, dynamic> _extractData(CompleteDatabase data) {
+  return {
+    'courses': data.courses,
+    'categories': data.categories,
+    'certificates': data.certificates,
+    'forums': data.forums,
+    'instructors': data.instructors,
+    'enrollments': data.enrollments,
+    'payments': data.payments,
+    'posts': data.posts,
+    'questions': data.questions,
+    'quizzes': data.quizzes,
+    'reviews': data.reviews,
+    'sections': data.sections,
+    'students': data.students,
+    'lessons': data.lessons,
+    'notifications': data.notifications,
+  };
 }

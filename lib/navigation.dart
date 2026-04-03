@@ -16,7 +16,9 @@ class BottomNav extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(20.0),
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
@@ -26,11 +28,13 @@ class BottomNav extends StatelessWidget {
             ],
           ),
           child: ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(20.0),
+            ),
             child: NavigationBar(
               height: 80,
               elevation: 0,
-              selectedIndex: state.selectedIndex,
+              selectedIndex: state.index,
               onDestinationSelected: (index) {
                 context.read<NavigationCubit>().setSelectedIndex(index);
                 switch (index) {
@@ -52,10 +56,8 @@ class BottomNav extends StatelessWidget {
               indicatorColor: Colors.white,
               destinations: List.generate(
                 4,
-                (index) => buildNavigationDestination(
-                  index,
-                  state.selectedIndex == index,
-                ),
+                (index) =>
+                    buildNavigationDestination(index, state.index == index),
               ),
             ),
           ),
