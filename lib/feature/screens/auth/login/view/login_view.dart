@@ -1,9 +1,12 @@
+import 'package:firstapp/feature/screens/auth/login/event/login_event.dart'
+    show LoginEvent, SignInRequested, TogglePasswordVisibility;
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../bloc/login_cubit.dart';
+import '../bloc/login_bloc.dart';
 import '../bloc/login_state.dart';
 import '/exports/data_paths.dart';
-import 'package:flutter/material.dart';
+import '../../../../../data/local/LocalStorage/smallStorage.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -28,11 +31,11 @@ class _LoginViewState extends State<LoginView> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return BlocProvider(
-      create: (context) => LoginCubit(
+      create: (context) => LoginBloc(
         supabase: Supabase.instance.client,
         storage: SmallStorage.instance,
       ),
-      child: BlocListener<LoginCubit, LoginState>(
+      child: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
             Navigator.pushReplacementNamed(context, AppRoutes.home);
@@ -89,14 +92,14 @@ class _LoginViewState extends State<LoginView> {
                             icondata: Icons.mail,
                           ),
                           const SizedBox(height: 16),
-                          BlocBuilder<LoginCubit, LoginState>(
+                          BlocBuilder<LoginBloc, LoginState>(
                             builder: (context, state) {
                               bool obscure = true;
-                              if (state is LoginInitial)
+                              if (state is LoginInitial) {
                                 obscure = state.isObscured;
-                              if (state is LoginLoading)
+                              } else if (state is LoginLoading) {
                                 obscure = state.isObscured;
-
+                              }
                               return Auth_text_field(
                                 function: (value) =>
                                     Validator.validatePassword(value),
@@ -113,30 +116,28 @@ class _LoginViewState extends State<LoginView> {
                                     color: Colors.white,
                                   ),
                                   onPressed: () => context
-                                      .read<LoginCubit>()
-                                      .togglePasswordVisibility(),
+                                      .read<LoginBloc>()
+                                      .add(TogglePasswordVisibility()),
                                 ),
                               );
                             },
                           ),
                           const SizedBox(height: 24),
-                          BlocBuilder<LoginCubit, LoginState>(
+                          BlocBuilder<LoginBloc, LoginState>(
                             builder: (context, state) {
                               if (state is LoginLoading) {
                                 return const Center(
-                                  child: CircularProgressIndicator(
-                                    color: Colors.white,
-                                  ),
+                                  child: CircularProgressIndicator(),
                                 );
                               }
                               return Custom_Auth_Button(
                                 title: "Login",
-                                function: () {
-                                  context.read<LoginCubit>().signIn(
-                                    _emailController.text.trim(),
-                                    _passwordController.text.trim(),
-                                  );
-                                },
+                                function: () => context.read<LoginBloc>().add(
+                                  SignInRequested(
+                                    _emailController.text,
+                                    _passwordController.text,
+                                  ),
+                                ),
                               );
                             },
                           ),
@@ -145,8 +146,8 @@ class _LoginViewState extends State<LoginView> {
                             title: "Register",
                             function: () => Navigator.pushNamed(
                               context,
-                              '/register',
-                            ), // Assuming standard route
+                              AppRoutes.register,
+                            ),
                           ),
                         ],
                       ),

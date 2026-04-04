@@ -11,6 +11,7 @@ import 'feature/screens/shop/cart/bloc/cart_cubit.dart';
 import 'feature/screens/shop/home/bloc/home_cubit.dart';
 import 'core/bloc/navigation_cubit.dart';
 import 'exports/data_paths.dart';
+import 'package:flutter_skill/flutter_skill.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

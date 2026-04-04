@@ -83,7 +83,7 @@ class MyDrawer extends StatelessWidget {
                     icon: Icons.chat,
                     ontap: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Ai_Chat()),
+                      MaterialPageRoute(builder: (context) => const AiChat()),
                     ),
                   ),
                 ],

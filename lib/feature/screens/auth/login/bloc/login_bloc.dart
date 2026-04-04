@@ -1,18 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../data/local/LocalStorage/smallStorage.dart';
+import '../event/login_event.dart';
 import 'login_state.dart';
 
-class LoginCubit extends Cubit<LoginState> {
+class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final SupabaseClient supabase;
   final SmallStorage storage;
 
-  LoginCubit({
-    required this.supabase,
-    required this.storage,
-  }) : super(const LoginInitial());
+  LoginBloc({required this.supabase, required this.storage})
+    : super(const LoginInitial()) {
+    on<TogglePasswordVisibility>(_onTogglePasswordVisibility);
+    on<SignInRequested>(_onSignInRequested);
+  }
 
-  void togglePasswordVisibility() {
+  void _onTogglePasswordVisibility(
+    TogglePasswordVisibility event,
+    Emitter<LoginState> emit,
+  ) {
     final isCurrentlyObscured = _getIsObscured();
     if (state is LoginInitial) {
       emit(LoginInitial(isObscured: !isCurrentlyObscured));
@@ -30,15 +35,18 @@ class LoginCubit extends Cubit<LoginState> {
     return true;
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<void> _onSignInRequested(
+    SignInRequested event,
+    Emitter<LoginState> emit,
+  ) async {
     final isCurrentlyObscured = _getIsObscured();
     emit(LoginLoading(isObscured: isCurrentlyObscured));
     try {
       final AuthResponse res = await supabase.auth.signInWithPassword(
-        email: email,
-        password: password,
+        email: event.email,
+        password: event.password,
       );
-      
+
       final User? user = res.user;
       if (user != null) {
         storage.writeIfNull("email", user.email);

@@ -9,25 +9,30 @@ class AppRoutes {
   static const account = '/account';
   static const pageloader = '/pageloader';
   static const campaign = '/campaign';
+  static const register = '/register';
 
   static Map<String, WidgetBuilder> get routes => {
-        pageloader: (context) {
-          if (SmallStorage.instance.read("login") != true) {
-            return PagesLoader(
-              dotlottieAssets: Assetspaths.assetspaths,
-              titles: AppStrings.titles,
-              textStyle: GoogleFonts.openSans(
-                textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-              ),
-            );
-          } else {
-            return const HomeScreen();
-          }
-        },
-        home: (context) => const HomeScreen(),
-        product: (context) => const ProductDetails(id: ''),
-        cart: (context) => const CartSrceen(),
-        account: (context) => const AccountScreen(),
-        campaign: (context) => const CampaignScreen()
-      };
+    pageloader: (context) {
+      if (SmallStorage.instance.read("login") != true) {
+        return PagesLoader(
+          dotlottieAssets: Assetspaths.assetspaths,
+          titles: AppStrings.titles,
+          textStyle: GoogleFonts.openSans(
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
+          ),
+        );
+      } else {
+        return const HomeScreen();
+      }
+    },
+    home: (context) => const HomeScreen(),
+    product: (context) => const ProductDetails(id: ''),
+    cart: (context) => const CartSrceen(),
+    account: (context) => const AccountScreen(),
+    campaign: (context) => const CampaignScreen(),
+    register: (context) => const RegisterView(),
+  };
 }

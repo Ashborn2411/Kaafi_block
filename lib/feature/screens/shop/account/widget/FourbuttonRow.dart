@@ -22,7 +22,7 @@ class FourButtonRow extends StatelessWidget {
           color: const Color(0xFFFFEB3B),
           onpressd: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Ai_Chat()),
+            MaterialPageRoute(builder: (context) => const AiChat()),
           ),
           icon: Icons.message,
         ),

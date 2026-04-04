@@ -1,40 +1,34 @@
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc/ai_chat_cubit.dart';
-import 'bloc/ai_chat_state.dart';
-import '../../core/Services/mistral_service.dart';
+import 'package:firstapp/core/Services/mistral_service.dart';
+import 'package:firstapp/feature/ai_module/bloc/ai_chat_cubit.dart';
+import 'package:firstapp/feature/ai_module/bloc/event/ai_chat_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+import 'bloc/ai_chat_state.dart';
 
-class Ai_Chat extends StatelessWidget {
-  const Ai_Chat({super.key});
+class AiChat extends StatelessWidget {
+  const AiChat({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AiChatCubit(mistralService: MistralService()),
-      child: BlocBuilder<AiChatCubit, AiChatState>(
+      create: (context) => AiChatBloc(mistralService: MistralService()),
+      child: BlocBuilder<AiChatBloc, AiChatState>(
         builder: (context, state) {
-          final cubit = context.read<AiChatCubit>();
+          final bloc = context.read<AiChatBloc>();
           return Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                "Kaffi Ai",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
-              ),
-              centerTitle: true,
-            ),
+            appBar: AppBar(title: Text("Ai chat Bot")),
             body: Chat(
-              currentUserId: 'user1',
-              resolveUser: (UserID id) async {
-                return User(
-                  id: id,
-                  name: id == 'user1' ? 'You' : 'KAAF AI',
-                );
+              currentUserId: "User 1",
+              resolveUser: (UserID id) async =>
+                  User(id: id, name: id == 'User 1' ? 'You' : 'KAAF AI'),
+              chatController: bloc.chatController,
+              onMessageSend: (message) {
+                //passing event
+                bloc.add(SendMessageEvent(message));
               },
-              chatController: cubit.chatController,
-              onMessageSend: (text) => cubit.sendMessage(text),
             ),
           );
         },

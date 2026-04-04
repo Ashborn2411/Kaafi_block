@@ -59,7 +59,7 @@ class ProductDetails extends StatelessWidget {
                     child: const Icon(Iconsax.message),
                     onPressed: () => Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Ai_Chat()),
+                      MaterialPageRoute(builder: (context) => const AiChat()),
                     ),
                   ),
                   appBar: AppBar(
