@@ -91,7 +91,6 @@ export '../feature/screens/auth/login/view/login_view.dart';
 export '../feature/screens/auth/Auth_implements/Auth_implement.dart';
 export '../feature/screens/auth/forgetscreen/forget_pass_view.dart';
 export '../feature/screens/auth/profileinfo/profileinfo.dart';
-export '../feature/screens/auth/profileinfo/infoprovide/infoprovider.dart';
 export '../feature/ai_module/ai_integrate.dart';
 export '../data/repository/datafetchAbstraction/dataFetch_abstraction.dart';
 export '../data/models/forum_data_class.dart';

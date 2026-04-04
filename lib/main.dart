@@ -1,3 +1,5 @@
+import 'package:firstapp/feature/screens/auth/login/bloc/login_bloc.dart';
+import 'package:firstapp/feature/screens/auth/profileinfo/bloc/profile_bloc_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,13 +48,9 @@ class MyApp extends StatelessWidget {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => DatabaseCubit(
-              context.read<DatabaseService>(),
-            ),
+            create: (context) => DatabaseCubit(context.read<DatabaseService>()),
           ),
-          BlocProvider(
-            create: (context) => NavigationCubit(),
-          ),
+          BlocProvider(create: (context) => NavigationCubit()),
           BlocProvider(
             create: (context) => HomeCubit(
               databaseCubit: context.read<DatabaseCubit>(),
@@ -70,6 +68,16 @@ class MyApp extends StatelessWidget {
               databaseCubit: context.read<DatabaseCubit>(),
               storage: context.read<SmallStorage>(),
             ),
+          ),
+          BlocProvider(
+            create: (context) => LoginBloc(
+              supabase: Supabase.instance.client,
+              storage: SmallStorage.instance,
+            ),
+          ),
+          BlocProvider(
+            create: (context) => ProfileBlocBloc(),
+            child: Container(),
           ),
         ],
         child: MaterialApp(
