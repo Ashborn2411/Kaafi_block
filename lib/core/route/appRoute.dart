@@ -10,6 +10,9 @@ class AppRoutes {
   static const pageloader = '/pageloader';
   static const campaign = '/campaign';
   static const register = '/register';
+  static const profileinfo = '/profileinfo';
+  static const login = '/login';
+  static const forgetpass = '/forgetpass';
 
   static Map<String, WidgetBuilder> get routes => {
     pageloader: (context) {
@@ -34,5 +37,8 @@ class AppRoutes {
     account: (context) => const AccountScreen(),
     campaign: (context) => const CampaignScreen(),
     register: (context) => const RegisterView(),
+    profileinfo: (context) => const CompleteProfileScreen(isUpdated: true),
+    login: (context) => const LoginView(),
+    forgetpass: (context) => const ForgetPassword(),
   };
 }

@@ -87,7 +87,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             textTheme: GoogleFonts.openSansTextTheme(),
           ),
-          initialRoute: AppRoutes.pageloader,
+          initialRoute: AppRoutes.profileinfo,
           routes: AppRoutes.routes,
         ),
       ),

@@ -129,18 +129,29 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       },
                     ),
                     const SizedBox(height: 16.0),
-                    CustomElevatedButton(
-                      title: widget.isUpdated
-                          ? 'Update'
-                          : StringCons.completeProfile,
-                      onPressed: () => context.read<ProfileBlocBloc>().add(
-                        SubmitEvent(
-                          date: state.dateOfBirth ?? "",
-                          name: _nameController.text,
-                          phone: _phoneController.text,
-                          isMale: state.isMaleSelected,
-                        ),
-                      ),
+                    BlocBuilder<ProfileBlocBloc, ProfileState>(
+                      builder: (context, state) {
+                        final bool isMale;
+                        if (state.isMaleSelected)
+                          isMale = true;
+                        else if (state.isFemaleSelected)
+                          isMale = false;
+                        else
+                          isMale = false;
+                        return CustomElevatedButton(
+                          title: widget.isUpdated
+                              ? 'Update'
+                              : StringCons.completeProfile,
+                          onPressed: () => context.read<ProfileBlocBloc>().add(
+                            SubmitEvent(
+                              date: state.dateOfBirth ?? "",
+                              name: _nameController.text,
+                              phone: _phoneController.text,
+                              isMale: isMale,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),

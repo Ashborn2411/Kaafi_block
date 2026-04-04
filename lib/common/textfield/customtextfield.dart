@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -27,7 +25,7 @@ class CustomTextField extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(
           0xFF9E9E9E,
-        ).withOpacity(0.1), // Vx.gray500.withOpacity(0.1)
+        ).withAlpha(10), // Vx.gray500.withOpacity(0.1)
         borderRadius: BorderRadius.circular(4), // roundedSM equivalent
       ),
       padding: const EdgeInsets.all(4), // p4 equivalent
@@ -40,7 +38,7 @@ class CustomTextField extends StatelessWidget {
           hintStyle: TextStyle(
             color: const Color(
               0xFF212121,
-            ).withOpacity(0.5), // Vx.gray900.withOpacity(0.5)
+            ).withAlpha(5), // Vx.gray900.withOpacity(0.5)
           ),
           suffixIcon: suffixIcon != null
               ? IconButton(onPressed: suffixfun, icon: Icon(suffixIcon))

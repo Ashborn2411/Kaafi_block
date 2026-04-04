@@ -32,6 +32,7 @@ class SubmitEvent extends ProfileEvent {
     required this.phone,
     required this.isMale,
   });
+
   @override
-  List<Object?> get props => [date, name, name, isMale];
+  List<Object?> get props => [date, name, phone, isMale];
 }
