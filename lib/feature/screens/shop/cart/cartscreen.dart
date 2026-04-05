@@ -14,13 +14,19 @@ class CartSrceen extends StatelessWidget {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         if (state is CartLoading) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         }
         if (state is CartLoaded) {
           final data = state.data;
           final totalCost = state.totalCost;
-          
+
           return Scaffold(
+            bottomSheet: SizedBox(
+              width: w,
+              child: BottomTitle(value: totalCost),
+            ),
             bottomNavigationBar: const BottomNav(),
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -34,12 +40,10 @@ class CartSrceen extends StatelessWidget {
                 ),
               ],
             ),
-            body: SizedBox(
-              width: w,
-              child: Stack(
-                children: [
-                  if (data.cartList.isNotEmpty)
-                    SingleChildScrollView(
+            body: Padding(
+              padding: const EdgeInsets.only(bottom: 90),
+              child: data.cartList.isNotEmpty
+                  ? SingleChildScrollView(
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
@@ -48,11 +52,14 @@ class CartSrceen extends StatelessWidget {
                               itemCount: data.cartList.length,
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              separatorBuilder: (BuildContext context, int index) {
-                                return const SizedBox(height: 10);
-                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                    return const SizedBox(height: 10);
+                                  },
                               itemBuilder: (BuildContext context, int index) {
-                                Course c = data.getCourseById(data.cartList[index]);
+                                Course c = data.getCourseById(
+                                  data.cartList[index],
+                                );
                                 return WishListComponent(
                                   title: c.title,
                                   price: c.price.toString(),
@@ -65,8 +72,7 @@ class CartSrceen extends StatelessWidget {
                         ),
                       ),
                     )
-                  else
-                    SingleChildScrollView(
+                  : SingleChildScrollView(
                       child: Column(
                         children: [
                           const Center(
@@ -88,15 +94,6 @@ class CartSrceen extends StatelessWidget {
                         ],
                       ),
                     ),
-                  Positioned(
-                    bottom: 0,
-                    child: SizedBox(
-                      width: w,
-                      child: BottomTitle(value: totalCost),
-                    ),
-                  ),
-                ],
-              ),
             ),
           );
         }

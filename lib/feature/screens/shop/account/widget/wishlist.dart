@@ -1,25 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/account_cubit.dart';
+import '../bloc/account_bloc.dart';
 import '../bloc/account_state.dart';
 import '/exports/data_paths.dart';
 import 'package:flutter/material.dart';
 
 class Wishlist extends StatelessWidget {
-  const Wishlist({
-    super.key,
-    required this.list,
-    this.title = "Wishlist",
-  });
+  const Wishlist({super.key, required this.list, this.title = "Wishlist"});
 
   final List list;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountCubit, AccountState>(
+    return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
         if (state is AccountLoading) {
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         }
         if (state is AccountLoaded) {
           final data = state.data;
@@ -51,32 +49,35 @@ class Wishlist extends StatelessWidget {
                 ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              child: list.isEmpty 
+              child: list.isEmpty
                   ? const Center(child: Text("List is empty"))
                   : ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  Course course = data.getCourseById(list[index]);
-                  return Dismissible(
-                    key: ValueKey(course.courseId),
-                    direction: DismissDirection.endToStart,
-                    background: Container(
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      color: Colors.redAccent,
-                      child: const Icon(Icons.delete, color: Colors.white),
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        Course course = data.getCourseById(list[index]);
+                        return Dismissible(
+                          key: ValueKey(course.courseId),
+                          direction: DismissDirection.endToStart,
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            color: Colors.redAccent,
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ),
+                          onDismissed: (direction) {
+                            // TODO: remove from wishlist logic in AccountCubit
+                          },
+                          child: WishListComponent(
+                            title: course.title,
+                            price: course.price.toString(),
+                            url: course.thumbnail,
+                          ),
+                        );
+                      },
                     ),
-                    onDismissed: (direction) {
-                      // TODO: remove from wishlist logic in AccountCubit
-                    },
-                    child: WishListComponent(
-                      title: course.title,
-                      price: course.price.toString(),
-                      url: course.thumbnail,
-                    ),
-                  );
-                },
-              ),
             ),
           );
         }
@@ -116,7 +117,7 @@ class WishListComponent extends StatelessWidget {
                 height: 80,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) =>
-                const Icon(Icons.broken_image, size: 60),
+                    const Icon(Icons.broken_image, size: 60),
               ),
             ),
             const SizedBox(width: 12),

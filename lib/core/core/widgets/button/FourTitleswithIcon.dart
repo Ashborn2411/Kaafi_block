@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../bloc/account_cubit.dart';
-import '../bloc/account_state.dart';
+import '../../../../feature/screens/shop/account/bloc/account_bloc.dart';
+import '../../../../feature/screens/shop/account/bloc/account_state.dart';
 import '/exports/data_paths.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class Fourtitleswithicon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountCubit, AccountState>(
+    return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
         if (state is AccountLoaded) {
           final data = state.data;
@@ -52,9 +52,7 @@ class Fourtitleswithicon extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Wishlist(
-                      list: data.wishlist,
-                    ),
+                    builder: (context) => Wishlist(list: data.wishlist),
                   ),
                 );
               },
@@ -74,7 +72,9 @@ class Fourtitleswithicon extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const ForgetPassword()),
+                  MaterialPageRoute(
+                    builder: (context) => const ForgetPassword(),
+                  ),
                 );
               },
             ),

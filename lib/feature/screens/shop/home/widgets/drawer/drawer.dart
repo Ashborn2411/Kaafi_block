@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../account/bloc/account_cubit.dart';
+import '../../../account/bloc/account_bloc.dart';
 import '../../../account/bloc/account_state.dart';
 import '/exports/data_paths.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ class MyDrawer extends StatelessWidget {
       width: w / 1.5,
       child: ClipRRect(
         borderRadius: BorderRadius.zero,
-        child: BlocBuilder<AccountCubit, AccountState>(
+        child: BlocBuilder<AccountBloc, AccountState>(
           builder: (context, state) {
             if (state is AccountLoading) {
               return const Center(child: CircularProgressIndicator());
