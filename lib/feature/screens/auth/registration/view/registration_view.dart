@@ -19,6 +19,7 @@ class _RegisterViewState extends State<RegisterView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -112,6 +113,16 @@ class _RegisterViewState extends State<RegisterView> {
                               icondata: Icons.mail,
                             ),
                             const SizedBox(height: 16),
+                            Auth_text_field(
+                              obscure: false,
+                              function: (value) =>
+                                  Validator.validatePhoneNumber(value),
+                              controller: _phoneController,
+                              hinttext: 'Enter your phone number',
+                              labeltext: 'Phone Number',
+                              icondata: Icons.phone,
+                            ),
+                            const SizedBox(height: 16),
                             BlocBuilder<RegisterBloc, RegisterState>(
                               builder: (context, state) {
                                 final bool isObscured = state is RegisterInitial
@@ -179,6 +190,8 @@ class _RegisterViewState extends State<RegisterView> {
                                           _passwordController.text.trim(),
                                           _confirmPasswordController.text
                                               .trim(),
+                                          _nameController.text.trim(),
+                                          _phoneController.text.trim(),
                                         ),
                                       );
                                     }

@@ -80,6 +80,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         storage.writeIfNull("email", user.email);
         storage.writeIfNull("id", user.id);
         storage.writeIfNull("registered", true);
+        storage.writeIfNull("name", event.name);
+        storage.writeIfNull("phone_number", event.phone_number);
         emit(RegisterSuccess());
       } else {
         emit(const RegisterFailure("Registration failed: User is null"));
