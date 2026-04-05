@@ -1,12 +1,4 @@
- 
- 
- 
- ///ADD Flutter perim
- 
- 
- 
- 
-  // Future<void> _requestCameraPermission(BuildContext context) async {
+ /// Camera permission utilities for Flutter applications // Future<void> _requestCameraPermission(BuildContext context) async {
   //   final status = await Permission.camera.request();
 
   //   if (status.isGranted) {

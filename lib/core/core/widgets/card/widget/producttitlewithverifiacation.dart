@@ -1,9 +1,7 @@
 import '/exports/data_paths.dart';
 
-import 'package:firstapp/common/card/widget/producttitle.dart';
+import 'package:firstapp/core/core/widgets/card/widget/producttitle.dart';
 import 'package:flutter/material.dart';
-
-
 
 class ProducttitlewithVerification extends StatelessWidget {
   const ProducttitlewithVerification({

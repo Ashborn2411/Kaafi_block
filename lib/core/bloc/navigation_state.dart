@@ -1,5 +1,3 @@
-import 'package:equatable/equatable.dart';
-
 class NavigationState {
   final int index;
   final String? routeName;

@@ -1,6 +1,6 @@
-import 'package:firstapp/common/button/customelevatedbutton.dart';
-import 'package:firstapp/common/text/titletext.dart';
-import 'package:firstapp/common/textfield/customtextfield.dart';
+import 'package:firstapp/core/core/widgets/button/customelevatedbutton.dart';
+import 'package:firstapp/core/core/widgets/text/titletext.dart';
+import 'package:firstapp/core/core/widgets/textfield/customtextfield.dart';
 import 'package:firstapp/core/Constants/stringconstant.dart';
 import 'package:firstapp/feature/screens/auth/profileinfo/bloc/profile_bloc_event.dart';
 import 'package:flutter/material.dart';

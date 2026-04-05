@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/bloc/bloc_observer.dart';
 import 'core/bloc/database_cubit.dart';
+import 'feature/screens/auth/registration/bloc/registration_bloc.dart';
 import 'feature/screens/shop/account/bloc/account_cubit.dart';
 import 'feature/screens/shop/cart/bloc/cart_cubit.dart';
 import 'feature/screens/shop/home/bloc/home_cubit.dart';
@@ -79,6 +80,12 @@ class MyApp extends StatelessWidget {
             create: (context) => ProfileBlocBloc(),
             child: Container(),
           ),
+          BlocProvider(
+            create: (context) => RegisterBloc(
+              supabase: Supabase.instance.client,
+              storage: SmallStorage.instance,
+            ),
+          ),
         ],
         child: MaterialApp(
           title: 'Kaafi',
@@ -87,7 +94,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             textTheme: GoogleFonts.openSansTextTheme(),
           ),
-          initialRoute: AppRoutes.profileinfo,
+          initialRoute: AppRoutes.register,
           routes: AppRoutes.routes,
         ),
       ),

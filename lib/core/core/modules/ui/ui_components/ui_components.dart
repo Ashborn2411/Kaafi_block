@@ -18,44 +18,44 @@ export 'common/custom_animation_screen1.dart';
 export 'common/controllers/long_press_fab_controller.dart';
 
 // Legacy common UI widgets from lib/common
-export '../../../../../common/button/customelevatedbutton.dart';
-export '../../../../../common/button/circulariconbutton.dart';
-export '../../../../../common/button/faqhelp.dart';
-export '../../../../../common/button/showbutton.dart';
-export '../../../../../common/button/suggesandbutton.dart';
+export '../../../widgets/button/customelevatedbutton.dart';
+export '../../../widgets/button/circulariconbutton.dart';
+export '../../../widgets/button/faqhelp.dart';
+export '../../../widgets/button/showbutton.dart';
+export '../../../widgets/button/suggesandbutton.dart';
 
-export '../../../../../common/card/cardlogobanner.dart';
-export '../../../../../common/card/cardwithattributes.dart';
-export '../../../../../common/card/homepagecard.dart';
-export '../../../../../common/card/homepagecardlineargradiant.dart';
-export '../../../../../common/card/productcard.dart';
-export '../../../../../common/card/productcardwithtag.dart';
-export '../../../../../common/card/shopcard.dart';
-export '../../../../../common/card/shopinfoandbuttoncard.dart';
-export '../../../../../common/card/banner/bannercarousel.dart';
-export '../../../../../common/card/banner/homebannercard.dart';
-export '../../../../../common/card/list/companycardlist.dart';
-export '../../../../../common/card/widget/producttitlewithverifiacation.dart';
-export '../../../../../common/card/widget/productprice.dart';
-export '../../../../../common/card/widget/productavailabilty.dart';
-export '../../../../../common/card/widget/shoptitlewithverification.dart';
-export '../../../../../common/card/widget/producttitle.dart';
-export '../../../../../common/card/widget/producttag.dart';
-export '../../../../../common/card/widget/shopinfo.dart';
-export '../../../../../common/card/widget/ratingwithtotalrated.dart';
-export '../../../../../common/card/widget/productsubtitle.dart';
+export '../../../widgets/card/cardlogobanner.dart';
+export '../../../widgets/card/cardwithattributes.dart';
+export '../../../widgets/card/homepagecard.dart';
+export '../../../widgets/card/homepagecardlineargradiant.dart';
+export '../../../widgets/card/productcard.dart';
+export '../../../widgets/card/productcardwithtag.dart';
+export '../../../widgets/card/shopcard.dart';
+export '../../../widgets/card/shopinfoandbuttoncard.dart';
+export '../../../widgets/card/banner/bannercarousel.dart';
+export '../../../widgets/card/banner/homebannercard.dart';
+export '../../../widgets/card/list/companycardlist.dart';
+export '../../../widgets/card/widget/producttitlewithverifiacation.dart';
+export '../../../widgets/card/widget/productprice.dart';
+export '../../../widgets/card/widget/productavailabilty.dart';
+export '../../../widgets/card/widget/shoptitlewithverification.dart';
+export '../../../widgets/card/widget/producttitle.dart';
+export '../../../widgets/card/widget/producttag.dart';
+export '../../../widgets/card/widget/shopinfo.dart';
+export '../../../widgets/card/widget/ratingwithtotalrated.dart';
+export '../../../widgets/card/widget/productsubtitle.dart';
 
-export '../../../../../common/image/bannerimg.dart';
-export '../../../../../common/image/productimgwithtag.dart';
-export '../../../../../common/image/roundedimg.dart';
+export '../../../widgets/image/bannerimg.dart';
+export '../../../widgets/image/productimgwithtag.dart';
+export '../../../widgets/image/roundedimg.dart';
 
-export '../../../../../common/text/titletext.dart';
-export '../../../../../common/text/termandcondition.dart';
+export '../../../widgets/text/titletext.dart';
+export '../../../widgets/text/termandcondition.dart';
 
-export '../../../../../common/textfield/customtextfield.dart';
+export '../../../widgets/textfield/customtextfield.dart';
 
-export '../../../../../common/icon/codicon.dart';
-export '../../../../../common/icon/customimgicon.dart';
+export '../../../widgets/icon/codicon.dart';
+export '../../../widgets/icon/customimgicon.dart';
 
 export 'home/priority_box.dart';
 export 'home/task_box.dart';

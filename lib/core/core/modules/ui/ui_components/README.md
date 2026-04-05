@@ -19,7 +19,7 @@ ui_components/
 │   ├── task_container.dart
 │   ├── status_box.dart
 │   └── subtask_box.dart
-├── common/               # Shared/common widgets
+├── common/               # Local shared widgets for this module
 │   ├── custom_shimmer.dart
 │   ├── long_press_fab.dart
 │   ├── custom_animation_screen1.dart
@@ -60,7 +60,7 @@ import 'package:firstapp/core/core/modules/ui/ui_components/auth/login_form.dart
 import 'package:firstapp/core/core/modules/ui/ui_components/task/task_container.dart';
 ```
 
-This module also exposes legacy reusable UI widgets from `lib/common/*` under the same central entrypoint.
+This module also exposes reusable UI widgets from `lib/core/core/widgets/*` under the same central entrypoint.
 
 ## Text Styles
 

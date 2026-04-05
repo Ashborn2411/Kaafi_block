@@ -5,7 +5,7 @@ import 'package:firstapp/core/bloc/database_states/database_loaded.dart';
 import 'package:firstapp/core/bloc/database_states/database_loading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/mainDataModel/MainDataClass.dart';
-import '../Services/DataBaseService/CenterDataBase/Database_service.dart';
+import '../Services/DataBaseService/CenterDataBase/database_service.dart';
 
 class DatabaseCubit extends Cubit<DatabaseState> {
   final MainDatabase _databaseService;
@@ -45,24 +45,4 @@ class DatabaseCubit extends Cubit<DatabaseState> {
     }
     return CompleteDatabase.emptydata;
   }
-}
-
-Map<String, dynamic> _extractData(CompleteDatabase data) {
-  return {
-    'courses': data.courses,
-    'categories': data.categories,
-    'certificates': data.certificates,
-    'forums': data.forums,
-    'instructors': data.instructors,
-    'enrollments': data.enrollments,
-    'payments': data.payments,
-    'posts': data.posts,
-    'questions': data.questions,
-    'quizzes': data.quizzes,
-    'reviews': data.reviews,
-    'sections': data.sections,
-    'students': data.students,
-    'lessons': data.lessons,
-    'notifications': data.notifications,
-  };
 }

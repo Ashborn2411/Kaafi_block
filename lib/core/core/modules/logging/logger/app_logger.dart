@@ -15,7 +15,7 @@ class AppLogger {
       lineLength: 100,
       colors: !kIsWeb,
       printEmojis: true,
-      printTime: true,
+      dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
     ),
   );
 
@@ -41,8 +41,10 @@ class AppLogger {
     try {
       final dir = await getApplicationDocumentsDirectory();
       final file = File('${dir.path}/app_log.txt');
-      await file.writeAsString('${DateTime.now().toIso8601String()} $message\n',
-          mode: FileMode.append);
+      await file.writeAsString(
+        '${DateTime.now().toIso8601String()} $message\n',
+        mode: FileMode.append,
+      );
     } catch (e) {
       logger.w('Failed writing log to file: $e');
     }

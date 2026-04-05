@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,8 +34,8 @@ class CustomDeviceUtils {
   }
 
   static double getScreenHeight() {
-    final window = WidgetsBinding.instance.window;
-    return window.physicalSize.height / window.devicePixelRatio;
+    final view = PlatformDispatcher.instance.views.first;
+    return view.physicalSize.height / view.devicePixelRatio;
   }
 
   static double getScreenWidth(BuildContext context) {
@@ -42,12 +43,12 @@ class CustomDeviceUtils {
   }
 
   static double getPixelRatio() {
-    return WidgetsBinding.instance.window.devicePixelRatio;
+    return PlatformDispatcher.instance.views.first.devicePixelRatio;
   }
 
   static double getStatusBarHeight() {
-    final window = WidgetsBinding.instance.window;
-    return window.padding.top / window.devicePixelRatio;
+    final view = PlatformDispatcher.instance.views.first;
+    return view.padding.top / view.devicePixelRatio;
   }
 
   static double getBottomNavigationBarHeight() {
@@ -59,13 +60,13 @@ class CustomDeviceUtils {
   }
 
   static double getKeyboardHeight() {
-    final window = WidgetsBinding.instance.window;
-    return window.viewInsets.bottom / window.devicePixelRatio;
+    final view = PlatformDispatcher.instance.views.first;
+    return view.viewInsets.bottom / view.devicePixelRatio;
   }
 
   static Future<bool> isKeyboardVisible() async {
-    final window = WidgetsBinding.instance.window;
-    return (window.viewInsets.bottom / window.devicePixelRatio) > 0;
+    final view = PlatformDispatcher.instance.views.first;
+    return (view.viewInsets.bottom / view.devicePixelRatio) > 0;
   }
 
   static Future<bool> isPhysicalDevice() async {

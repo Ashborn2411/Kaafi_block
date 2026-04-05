@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../feature/screens/auth/registration/view/registration_view.dart'
+    show RegisterView;
 import '/exports/data_paths.dart';
 
 class AppRoutes {
